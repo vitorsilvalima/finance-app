@@ -6,8 +6,8 @@ import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 const createIcon = (IconComponent, name) => ({ focused }) => (
-  focused ? <IconComponent name={name} size={25} color="red" />
-    : <IconComponent name={name} size={25} color="black" />
+  focused ? <IconComponent name={name} size={20} color="red" />
+    : <IconComponent name={name} size={20} color="black" />
 )
 
 

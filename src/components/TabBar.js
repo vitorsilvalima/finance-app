@@ -2,14 +2,26 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons'
+import { View as AnimatedView } from 'react-native-animatable';
+import { withAppState } from 'src/appState'
 
 const MiddleButtom = () => (
-  <TouchableOpacity style={{ width: 70, height: 70, borderRadius: 50, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }}>
-    <AntDesignIcon name="plus" size={40} color="white" />
+  <TouchableOpacity style={{ width: 50, height: 50, borderRadius: 50, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }}>
+    <AntDesignIcon name="plus" size={25} color="white" />
   </TouchableOpacity>
 )
 
 class TabBar extends Component {
+  state = {
+    animationType: 'fadeInUp'
+  }
+
+  static getDerivedStateFromProps ({ isTabBarVisible }) {
+    return ({
+      animationType: isTabBarVisible ? 'fadeInUp' : 'fadeOutDown'
+    })
+  }
+
   renderIcon = ({ route, focused }) => {
     const { onTabPress, renderIcon } = this.props
 
@@ -34,13 +46,14 @@ class TabBar extends Component {
     const leftRoutes = routes.slice(0, length)
     const rightRoutes = routes.slice(length)
 
-    return (<View style={{
+    return (<AnimatedView animation={this.state.animationType} duration={700} style={{
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: 'rgba(255,255,255,0.9)',
       position: 'absolute',
       bottom: 0,
+
     }}>
       <View style={{
         alignItems: 'center',
@@ -73,8 +86,8 @@ class TabBar extends Component {
           })
         }
       </View>
-    </View>)
+    </AnimatedView>)
 
   }
 }
-export default TabBar
+export default withAppState(TabBar)

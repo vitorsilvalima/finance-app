@@ -1,9 +1,7 @@
-/**
- * @format
- */
-
 import {AppRegistry} from 'react-native';
-import RootStack from './src/navigation/RootStack';
+import App from './src/App';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => RootStack);
+
+
+AppRegistry.registerComponent(appName, () => App);
